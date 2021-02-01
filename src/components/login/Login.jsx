@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
@@ -7,18 +7,24 @@ import styles from "./Login.module.css";
 const Login = ({ authService }) => {
   const history = useHistory();
 
+  const goToMain = (userId) => {
+    history.push({
+      pathname: "/main",
+      state: { id: userId },
+    });
+  };
+
   const onLogin = (event) => {
     authService
       .login(event.currentTarget.textContent) //
-      .then((result) => {
-        const credential = result.credential;
-        const token = credential.accessToken;
-        if (token) {
-          history.push("/main");
-        }
-      });
+      .then((result) => goToMain(result.user.uid));
   };
 
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      user && goToMain(user.uid);
+    });
+  }, []);
   return (
     <section className={styles.loginWrapper}>
       <div className={styles.loginContainer}>
@@ -33,11 +39,7 @@ const Login = ({ authService }) => {
             </li>
             <li>
               <button className={styles.loginButton} onClick={onLogin}>
-                
-                
                 Github
-              
-              
               </button>
             </li>
           </ul>

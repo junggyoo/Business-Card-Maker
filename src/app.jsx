@@ -9,10 +9,10 @@ function App({ authService }) {
     <Router>
       <Switch>
         <Route exact path={["/", "/login"]}>
-          <Login authService={authService}  />
+          <Login authService={authService} />
         </Route>
         <Route path="/main">
-          <Main />
+          <Main authService={authService} />
         </Route>
       </Switch>
     </Router>
