@@ -1,11 +1,11 @@
-@value makerWhite, makerGreen from '../../common/colors.css';
+@value makerWhite, makerGreen, makerLightPink, makerGrey from '../../common/colors.css';
 
 .loginWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: lightgray;
+  background-color: makerGrey;
 }
 
 .loginContainer {
@@ -30,12 +30,12 @@ h1 {
   width: 100%;
   padding: 0.5em 12em;
   margin-bottom: 0.3em;
-  border-radius: 10px;
+  border-radius: 1.2rem;
   background-color: makerWhite;
+  border: 0.1rem solid makerGreen;
   cursor: pointer;
 }
 
 .loginButton:hover {
-  background-color: makerGreen;
-  color: makerWhite;
+  background-color: makerLightPink;
 }

@@ -4,12 +4,12 @@ import "./app.css";
 import Login from "./components/login/Login";
 import Main from "./components/main/Main";
 
-function App() {
+function App({ authService }) {
   return (
     <Router>
       <Switch>
         <Route exact path={["/", "/login"]}>
-          <Login />
+          <Login authService={authService}  />
         </Route>
         <Route path="/main">
           <Main />
