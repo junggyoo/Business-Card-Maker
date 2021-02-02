@@ -3,7 +3,7 @@ import Button from "../button/Button";
 import ImageFileInput from "../image_file_input/ImageFileInput";
 import styles from "./CardCreateForm.module.css";
 
-const CardCreateForm = ({ cards, setCards }) => {
+const CardCreateForm = ({ createCard }) => {
   const [newCard, setNewCard] = useState({
     name: "",
     company: "",
@@ -18,7 +18,7 @@ const CardCreateForm = ({ cards, setCards }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setCards([...cards, newCard]);
+    createCard(newCard);
     formRef.current.reset();
   };
 

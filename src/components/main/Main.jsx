@@ -7,8 +7,8 @@ import Editor from "../editor/Editor";
 import Preview from "../preview/Preview";
 
 const Main = ({ authService }) => {
-  const [cards, setCards] = useState([
-    {
+  const [cards, setCards] = useState({
+    '1': {
       id: "1",
       name: "Ellie Dream Coding",
       company: "Samsung Electronics",
@@ -19,7 +19,7 @@ const Main = ({ authService }) => {
       fileURL: "/images/default_logo.png",
       theme: "dark",
     },
-    {
+    '2': {
       id: "2",
       name: "Bob",
       company: "Uber",
@@ -30,7 +30,7 @@ const Main = ({ authService }) => {
       fileURL: "/images/default_logo.png",
       theme: "light",
     },
-    {
+    '3': {
       id: "3",
       name: "Chris",
       company: "Instargram",
@@ -41,18 +41,23 @@ const Main = ({ authService }) => {
       fileURL: "/images/default_logo.png",
       theme: "colorful",
     },
-    {
-      id: "4",
-      name: "Chris",
-      company: "Instargram",
-      role: "Project Manager",
-      email: "chris@instargram.com",
-      coment: `"Dessign your dream"`,
-      fileName: "eric",
-      fileURL: "/images/default_logo.png",
-      theme: "dark",
-    },
-  ]);
+  });
+
+  const deleteCard = (card) => {
+    setCards(cards => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    })
+  };
+
+  const createOrUpdateCard = (card) => {
+    setCards(cards => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    })
+  };
 
   const history = useHistory();
   const onLogout = () => {
@@ -65,8 +70,13 @@ const Main = ({ authService }) => {
     <>
       <Header onLogout={onLogout} />
       <main className={styles.mainContainer}>
-        <Editor cards={cards} setCards={setCards} />
-        <Preview cards={cards} />
+        <Editor
+          cards={cards}
+          createCard={createOrUpdateCard}
+          deleteCard={deleteCard}
+          updateCard={createOrUpdateCard}
+        />
+        <Preview cards={cards} setCards={setCards} />
       </main>
       <Footer />
     </>
