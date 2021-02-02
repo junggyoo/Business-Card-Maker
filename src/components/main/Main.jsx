@@ -65,7 +65,7 @@ const Main = ({ authService }) => {
     <>
       <Header onLogout={onLogout} />
       <main className={styles.mainContainer}>
-        <Editor cards={cards} />
+        <Editor cards={cards} setCards={setCards} />
         <Preview cards={cards} />
       </main>
       <Footer />
