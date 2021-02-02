@@ -1,0 +1,18 @@
+@value mediaQuery from "/src/common/size.css";
+@value makerGreen from "/src/common/colors.css";
+
+.editor {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.title {
+  color: makerGreen;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .editor {
+    width: 100%;
+  }
+}

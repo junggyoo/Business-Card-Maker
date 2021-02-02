@@ -1,0 +1,12 @@
+@value mediaQuery from "/src/common/size.css";
+
+.mainContainer {
+  display: flex;
+  margin: 2rem 1rem;
+}
+
+@media screen and (max-width: mediaQuery) {
+  .mainContainer { 
+    flex-direction: column;
+  }
+}

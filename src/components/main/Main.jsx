@@ -3,6 +3,8 @@ import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { useHistory } from "react-router-dom";
 import styles from "./Main.module.css";
+import Editor from "../editor/Editor";
+import Preview from "../preview/Preview";
 
 const Main = ({ authService }) => {
   const history = useHistory();
@@ -16,8 +18,8 @@ const Main = ({ authService }) => {
     <>
       <Header onLogout={onLogout} />
       <main className={styles.mainContainer}>
-        <section>Card Maker</section>
-        <section>Card Preview</section>
+        <Editor />
+        <Preview />
       </main>
       <Footer />
     </>
