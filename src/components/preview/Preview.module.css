@@ -1,15 +1,19 @@
 @value mediaQuery from "/src/common/size.css";
-@value makerGreen from "/src/common/colors.css";
+@value makerGreen, makerWhite, makerBlack from "/src/common/colors.css";
 
 .preview {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 50%;
 }
 
 .title {
+  text-align: center;
   color: makerGreen;
+  margin-bottom: 1rem;
 }
+
 @media screen and (max-width: mediaQuery) {
   .preview {
     width: 100%;
