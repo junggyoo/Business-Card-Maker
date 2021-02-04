@@ -6,9 +6,9 @@ import styles from "./Main.module.css";
 import Editor from "../editor/Editor";
 import Preview from "../preview/Preview";
 
-const Main = ({ authService }) => {
+const Main = ({ authService, FileInput }) => {
   const [cards, setCards] = useState({
-    '1': {
+    1: {
       id: "1",
       name: "Ellie Dream Coding",
       company: "Samsung Electronics",
@@ -19,7 +19,7 @@ const Main = ({ authService }) => {
       fileURL: "/images/default_logo.png",
       theme: "dark",
     },
-    '2': {
+    2: {
       id: "2",
       name: "Bob",
       company: "Uber",
@@ -30,7 +30,7 @@ const Main = ({ authService }) => {
       fileURL: "/images/default_logo.png",
       theme: "light",
     },
-    '3': {
+    3: {
       id: "3",
       name: "Chris",
       company: "Instargram",
@@ -44,19 +44,19 @@ const Main = ({ authService }) => {
   });
 
   const deleteCard = (card) => {
-    setCards(cards => {
+    setCards((cards) => {
       const updated = { ...cards };
       delete updated[card.id];
       return updated;
-    })
+    });
   };
 
   const createOrUpdateCard = (card) => {
-    setCards(cards => {
+    setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
       return updated;
-    })
+    });
   };
 
   const history = useHistory();
@@ -71,6 +71,7 @@ const Main = ({ authService }) => {
       <Header onLogout={onLogout} />
       <main className={styles.mainContainer}>
         <Editor
+          FileInput={FileInput}
           cards={cards}
           createCard={createOrUpdateCard}
           deleteCard={deleteCard}

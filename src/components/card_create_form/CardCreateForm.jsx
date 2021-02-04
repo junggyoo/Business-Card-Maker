@@ -1,32 +1,39 @@
 import React, { useRef, useState } from "react";
 import Button from "../button/Button";
-import ImageFileInput from "../image_file_input/ImageFileInput";
 import styles from "./CardCreateForm.module.css";
 
-const CardCreateForm = ({ createCard }) => {
-  const [newCard, setNewCard] = useState({
-    name: "",
-    company: "",
-    theme: "",
-    role: "",
-    email: "",
-    coment: "",
-    id: "",
-  });
-
+const CardCreateForm = ({ FileInput, createCard }) => {
+  const [file, setFile] = useState({fileName: null, fileURL: null})
+  const nameRef = useRef();
+  const companyRef = useRef();
+  const themeRef = useRef();
+  const roleRef = useRef();
+  const emailRef = useRef();
+  const comentRef = useRef();
   const formRef = useRef();
+
+  const onFileChange = (file) => {
+    setFile({fileName: file.name, fileURL: file.url });
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    createCard(newCard);
+    const card = {
+      id: Date.now(),
+      name: nameRef.current.value || '',
+      company: companyRef.current.value || '',
+      theme: themeRef.current.value || '',
+      role: roleRef.current.value || '',
+      email: emailRef.current.value || '',
+      coment: comentRef.current.value || '',
+      fileName: file.fileName || '',
+      fileURL: file.fileURL || '',
+    }
+    createCard(card);
+    setFile({fileName: null, fileURL: null})
     formRef.current.reset();
   };
 
-  const onChange = (e) => {
-    const { value } = e.target;
-    const { name } = e.target;
-    setNewCard({ ...newCard, [name]: value, id: Date.now() });
-  };
   return (
     <form className={styles.form} onSubmit={onSubmit} ref={formRef}>
       <input
@@ -34,20 +41,20 @@ const CardCreateForm = ({ createCard }) => {
         type="text"
         name="name"
         placeholder="Name"
-        onChange={onChange}
+        ref={nameRef}
       />
       <input
         className={styles.input}
         type="text"
         name="company"
         placeholder="Compony"
-        onChange={onChange}
+        ref={companyRef}
       />
       <select
         className={styles.select}
         name="theme"
         defaultValue="light"
-        onChange={onChange}
+        ref={themeRef}
       >
         <option value="light">light</option>
         <option value="dark">dark</option>
@@ -58,23 +65,23 @@ const CardCreateForm = ({ createCard }) => {
         type="text"
         name="role"
         placeholder="Role"
-        onChange={onChange}
+        ref={roleRef}
       />
       <input
         className={styles.input}
         type="text"
         name="email"
         placeholder="Email"
-        onChange={onChange}
+        ref={emailRef}
       />
       <textarea
         className={styles.textarea}
         name="coment"
         placeholder="Coment"
-        onChange={onChange}
+        ref={comentRef}
       ></textarea>
       <div className={styles.fileInput}>
-        <ImageFileInput />
+        <FileInput onFileChange={onFileChange}   />
       </div>
       <Button name="Add" onClick={onSubmit} />
     </form>
