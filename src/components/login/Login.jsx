@@ -25,27 +25,26 @@ const Login = ({ authService }) => {
       user && goToMain(user.uid);
     });
   }, []);
+
   return (
-    <section className={styles.loginWrapper}>
-      <div className={styles.loginContainer}>
-        <Header />
-        <section className={styles.login}>
-          <h1>Login</h1>
-          <ul className={styles.buttonContainer}>
-            <li>
-              <button className={styles.loginButton} onClick={onLogin}>
-                Google
-              </button>
-            </li>
-            <li>
-              <button className={styles.loginButton} onClick={onLogin}>
-                Github
-              </button>
-            </li>
-          </ul>
-        </section>
-        <Footer />
-      </div>
+    <section className={styles.loginContainer}>
+      <Header />
+      <section className={styles.login}>
+        <h1>Login</h1>
+        <ul className={styles.buttonContainer}>
+          <li>
+            <button className={styles.loginButton} onClick={onLogin}>
+              Google
+            </button>
+          </li>
+          <li>
+            <button className={styles.loginButton} onClick={onLogin}>
+              Github
+            </button>
+          </li>
+        </ul>
+      </section>
+      <Footer />
     </section>
   );
 };

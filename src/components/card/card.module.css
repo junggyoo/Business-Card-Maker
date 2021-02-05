@@ -2,8 +2,8 @@
 
 .card {
   display: flex;
-  width: 30rem;
-  padding: 2rem;
+  width: 30em;
+  padding: 2em;
   margin-bottom: 1rem;
   color: makerWhite;
   background-color: makerBlack;

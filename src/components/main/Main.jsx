@@ -44,7 +44,7 @@ const Main = ({ authService, FileInput, cardRepository }) => {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
 
   useEffect(() => {
     authService.onAuthChange((user) => {
@@ -54,12 +54,12 @@ const Main = ({ authService, FileInput, cardRepository }) => {
         history.push("/");
       }
     });
-  });
+  }, [authService, history]);
 
   return (
-    <>
+    <section className={styles.mainContainer}>
       <Header onLogout={onLogout} />
-      <main className={styles.mainContainer}>
+      <main className={styles.main}>
         <Editor
           FileInput={FileInput}
           cards={cards}
@@ -70,7 +70,7 @@ const Main = ({ authService, FileInput, cardRepository }) => {
         <Preview cards={cards} setCards={setCards} />
       </main>
       <Footer />
-    </>
+    </section>
   );
 };
 

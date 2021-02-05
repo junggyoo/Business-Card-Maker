@@ -5,52 +5,14 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  padding: 0.5em 2em;
-  border-right: 1px solid makerGrey;
+  height: 100%;
+  padding: 0 2em;
 }
 
 .title {
   text-align: center;
   color: makerGreen;
   margin-bottom: 1rem;
-}
-
-.cardEditor {
-  margin-bottom: 1rem;
-}
-
-.table {
-  width: 100%;
-  border: 1px solid #444;
-  border-collapse: collapse;
-}
-
-tr {
-  height: 2rem;
-}
-
-td {
-  padding: 0.2em;
-  border: 1px solid #444;
-}
-
-.coment {
-  height: 2.5rem;
-  font-weight: lighter;
-}
-
-.profileUpload {
-  text-align: center;
-  height: 2.5rem;
-  background-color: makerLightPink;
-  font-weight: bold;
-}
-
-.delete {
-  text-align: center;
-  background-color: makerGreen;
-  color: makerWhite;
-  font-weight: bold;
 }
 
 @media screen and (max-width: mediaQuery) {

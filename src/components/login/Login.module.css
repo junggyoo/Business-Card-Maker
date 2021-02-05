@@ -1,22 +1,18 @@
 @value makerWhite, makerGreen, makerLightPink, makerGrey from '../../common/colors.css';
 
-.loginWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: makerGrey;
-}
-
 .loginContainer {
-  width: 30rem;
+  width: 100%;
+  height: 100vh;
 }
 
 .login {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 2rem 0.5rem;
+  width: 100%;
+  height: 85%;
+  padding: auto 0;
   background-color: makerWhite;
 }
 
