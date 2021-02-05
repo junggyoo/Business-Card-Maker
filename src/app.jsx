@@ -4,7 +4,7 @@ import "./app.css";
 import Login from "./components/login/Login";
 import Main from "./components/main/Main";
 
-function App({ FileInput, authService }) {
+function App({ FileInput, authService, cardRepository }) {
   return (
     <Router>
       <Switch>
@@ -12,7 +12,11 @@ function App({ FileInput, authService }) {
           <Login authService={authService} />
         </Route>
         <Route path="/main">
-          <Main FileInput={FileInput} authService={authService} />
+          <Main
+            FileInput={FileInput}
+            authService={authService}
+            cardRepository={cardRepository}
+          />
         </Route>
       </Switch>
     </Router>

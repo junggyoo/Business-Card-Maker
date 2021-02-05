@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { useHistory } from "react-router-dom";
@@ -6,42 +6,10 @@ import styles from "./Main.module.css";
 import Editor from "../editor/Editor";
 import Preview from "../preview/Preview";
 
-const Main = ({ authService, FileInput }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: "1",
-      name: "Ellie Dream Coding",
-      company: "Samsung Electronics",
-      role: "Software Engineer",
-      email: "dream.corder.ellie@gmail.com",
-      coment: `"Don't forget to code your dream"`,
-      fileName: "eric",
-      fileURL: "/images/default_logo.png",
-      theme: "dark",
-    },
-    2: {
-      id: "2",
-      name: "Bob",
-      company: "Uber",
-      role: "Software Engineer",
-      email: "bob@uber.com",
-      coment: `"I love coding"`,
-      fileName: "eric",
-      fileURL: "/images/default_logo.png",
-      theme: "light",
-    },
-    3: {
-      id: "3",
-      name: "Chris",
-      company: "Instargram",
-      role: "Project Manager",
-      email: "chris@instargram.com",
-      coment: `"Dessign your dream"`,
-      fileName: "eric",
-      fileURL: "/images/default_logo.png",
-      theme: "colorful",
-    },
-  });
+const Main = ({ authService, FileInput, cardRepository }) => {
+  const historyState = useHistory().state;
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(historyState && historyState.id);
 
   const deleteCard = (card) => {
     setCards((cards) => {
@@ -49,6 +17,7 @@ const Main = ({ authService, FileInput }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.removeCard(userId, card);
   };
 
   const createOrUpdateCard = (card) => {
@@ -57,6 +26,7 @@ const Main = ({ authService, FileInput }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const history = useHistory();
@@ -65,6 +35,26 @@ const Main = ({ authService, FileInput }) => {
       .logout() //
       .then(() => history.push("/"));
   };
+
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    const stopSync = cardRepository.syncCards(userId, (cards) => {
+      setCards(cards);
+    });
+    return () => stopSync();
+  }, [userId]);
+
+  useEffect(() => {
+    authService.onAuthChange((user) => {
+      if (user) {
+        setUserId(user.uid);
+      } else {
+        history.push("/");
+      }
+    });
+  });
 
   return (
     <>
