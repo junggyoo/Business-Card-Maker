@@ -3,7 +3,7 @@ import Button from "../button/Button";
 import styles from "./CardEditorForm.module.css";
 
 const CardEditorForm = ({ FileInput, card, deleteCard, updateCard }) => {
-  const { name, company, role, email, coment, fileName, fileURL, theme } = card;
+  const { name, company, role, email, coment, fileName, theme } = card;
 
   const onSubmit = () => {
     deleteCard(card);
@@ -44,27 +44,30 @@ const CardEditorForm = ({ FileInput, card, deleteCard, updateCard }) => {
         value={company}
         onChange={handleChange}
       />
-      <select 
-        className={styles.select} 
-        name="theme" 
-        value={theme} 
-        onChange={handleChange}>
+      <select
+        className={styles.select}
+        name="theme"
+        value={theme}
+        onChange={handleChange}
+      >
         <option value="light">Light</option>
         <option value="dark">Dark</option>
         <option value="colorful">Colorful</option>
       </select>
-      <input 
-        className={styles.input} 
-        type="text" 
-        name="role" 
-        value={role} 
-        onChange={handleChange} />
-      <input 
-        className={styles.input} 
-        type="text" 
-        name="email" 
-        value={email} 
-        onChange={handleChange} />
+      <input
+        className={styles.input}
+        type="text"
+        name="role"
+        value={role}
+        onChange={handleChange}
+      />
+      <input
+        className={styles.input}
+        type="text"
+        name="email"
+        value={email}
+        onChange={handleChange}
+      />
       <textarea
         className={styles.textarea}
         name="coment"
@@ -72,7 +75,7 @@ const CardEditorForm = ({ FileInput, card, deleteCard, updateCard }) => {
         onChange={handleChange}
       ></textarea>
       <div className={styles.fileInput}>
-        <FileInput onFileChange={onFileChange}/>
+        <FileInput onFileChange={onFileChange} name={fileName} />
       </div>
       <Button name="Delete" />
     </form>

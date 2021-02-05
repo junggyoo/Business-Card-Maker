@@ -3,7 +3,7 @@ import Button from "../button/Button";
 import styles from "./CardCreateForm.module.css";
 
 const CardCreateForm = ({ FileInput, createCard }) => {
-  const [file, setFile] = useState({fileName: null, fileURL: null})
+  const [file, setFile] = useState({ fileName: null, fileURL: null });
   const nameRef = useRef();
   const companyRef = useRef();
   const themeRef = useRef();
@@ -13,24 +13,24 @@ const CardCreateForm = ({ FileInput, createCard }) => {
   const formRef = useRef();
 
   const onFileChange = (file) => {
-    setFile({fileName: file.name, fileURL: file.url });
+    setFile({ fileName: file.name, fileURL: file.url });
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
     const card = {
       id: Date.now(),
-      name: nameRef.current.value || '',
-      company: companyRef.current.value || '',
-      theme: themeRef.current.value || '',
-      role: roleRef.current.value || '',
-      email: emailRef.current.value || '',
-      coment: comentRef.current.value || '',
-      fileName: file.fileName || '',
-      fileURL: file.fileURL || '',
-    }
+      name: nameRef.current.value || "",
+      company: companyRef.current.value || "",
+      theme: themeRef.current.value || "",
+      role: roleRef.current.value || "",
+      email: emailRef.current.value || "",
+      coment: comentRef.current.value || "",
+      fileName: file.fileName || "",
+      fileURL: file.fileURL || "",
+    };
     createCard(card);
-    setFile({fileName: null, fileURL: null})
+    setFile({ fileName: null, fileURL: null });
     formRef.current.reset();
   };
 
@@ -81,7 +81,7 @@ const CardCreateForm = ({ FileInput, createCard }) => {
         ref={comentRef}
       ></textarea>
       <div className={styles.fileInput}>
-        <FileInput onFileChange={onFileChange}   />
+        <FileInput onFileChange={onFileChange} name={file.fileName} />
       </div>
       <Button name="Add" onClick={onSubmit} />
     </form>

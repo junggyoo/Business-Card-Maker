@@ -8,18 +8,15 @@ const Editor = ({ FileInput, cards, updateCard, deleteCard, createCard }) => {
     <section className={styles.editor}>
       <h2 className={styles.title}>Card Maker</h2>
       {Object.keys(cards).map((key) => (
-        <CardEditorForm 
-          key={key} 
-          FileInput={FileInput} 
-          card={cards[key]} 
-          deleteCard={deleteCard} 
-          updateCard={updateCard} />
+        <CardEditorForm
+          key={key}
+          FileInput={FileInput}
+          card={cards[key]}
+          deleteCard={deleteCard}
+          updateCard={updateCard}
+        />
       ))}
-      <CardCreateForm 
-        FileInput={FileInput} 
-        cards={cards} 
-        createCard={createCard}
-      />
+      <CardCreateForm FileInput={FileInput} createCard={createCard} />
     </section>
   );
 };
