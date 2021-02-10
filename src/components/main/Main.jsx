@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { useHistory } from "react-router-dom";
@@ -30,11 +30,11 @@ const Main = ({ authService, FileInput, cardRepository }) => {
   };
 
   const history = useHistory();
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     authService
       .logout() //
       .then(() => history.push("/"));
-  };
+  }, [authService, history]);
 
   useEffect(() => {
     if (!userId) {

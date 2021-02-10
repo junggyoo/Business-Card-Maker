@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import styles from "./ImageFileInput.module.css";
 
-const ImageFileInput = ({ imageUploader, onFileChange, name }) => {
+const ImageFileInput = memo(({ imageUploader, onFileChange, name }) => {
   const [loading, setLoading] = useState(false);
 
   const inputRef = useRef();
@@ -42,6 +42,6 @@ const ImageFileInput = ({ imageUploader, onFileChange, name }) => {
       {loading && <div className={styles.loading}></div>}
     </div>
   );
-};
+});
 
 export default ImageFileInput;
